@@ -29,7 +29,7 @@ class MessengerView extends Component {
     this.messagesRef.on('child_added', (child) => {
       this.handleReceive(child.key, child.val());
     });
-    this.handleSend({text: 'I am back!!!'})
+    //this.handleSend({text: 'I am back!!!'})
   }
 
   render() {
@@ -45,7 +45,7 @@ class MessengerView extends Component {
           }}
           messages={messages}
           handleSend={this.handleSend.bind(this)}
-          maxHeight={Dimensions.get('window').height - STATUS_BAR_HEIGHT - CONTAINER_MARGIN}
+          maxHeight={Dimensions.get('window').height - STATUS_BAR_HEIGHT * 2 - CONTAINER_MARGIN * 2 - 80 }
         />
       </View>
     );

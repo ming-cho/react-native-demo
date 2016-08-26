@@ -10,7 +10,7 @@ import MessengerViewConatainer from './messenger/MessengerViewContainer'
 export default function AppRouter(props) {
   const key = props.scene.route.key;
 
-  if ( key == 'Messenger') {
+  if ( key == 'Messenger' || key == 'Counter') {
     return <MessengerViewConatainer />
   }
 
