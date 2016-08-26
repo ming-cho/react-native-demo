@@ -15,6 +15,7 @@
   * 同じマーシンにandroid simulator と ios simulator同時に立ち上がらない。おそらくdebug portを被っている？
 
 ## TODO
+  * firebaseとのやり取りは全部actionに寄せる
   * ログイン機能(firebaseを使う)
   * 他のコンポネントサンプルを追加する
   * テストコードの追加
