@@ -1,8 +1,9 @@
 /*eslint-disable react/prop-types*/
 
 import React from 'react';
-import CounterViewContainer from './counter/CounterViewContainer';
+//import CounterViewContainer from './counter/CounterViewContainer';
 import ColorViewContainer from './colors/ColorViewContainer';
+import MessengerViewConatainer from './messenger/MessengerViewContainer'
 
 /**
  * AppRouter is responsible for mapping a navigator scene to a view
@@ -10,8 +11,12 @@ import ColorViewContainer from './colors/ColorViewContainer';
 export default function AppRouter(props) {
   const key = props.scene.route.key;
 
-  if (key === 'Counter') {
-    return <CounterViewContainer />;
+  // if (key === 'Counter') {
+  //   return <CounterViewContainer />;
+  // }
+
+  if ( key == 'Messenger') {
+    return <MessengerViewConatainer />
   }
 
   if (key.indexOf('Color') === 0) {
