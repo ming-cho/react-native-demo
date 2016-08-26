@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import { Platform, View} from 'react-native';
+import { Platform, View, Dimensions} from 'react-native';
 import {firebaseApp} from '../../utils/firebase';
 import * as MessengerState from './MessengerState';
 const GiftedMessenger = require('react-native-gifted-messenger');
@@ -26,7 +26,10 @@ class MessengerView extends Component {
   }
 
   componentDidMount() {
-    this.messagesRef.on('child_added', (child) => this.handleReceive(child.key(), child.val()));
+    this.messagesRef.on('child_added', (child) => {
+      this.handleReceive(child.key, child.val());
+    });
+    this.handleSend({text: 'I am back!!!'})
   }
 
   render() {
@@ -39,7 +42,7 @@ class MessengerView extends Component {
               backgroundColor: '#007aff',
             },
           }}
-          messages={this.props.messages}
+          messages={this.props.messages.toArray()}
           handleSend={this.handleSend.bind(this)}
           maxHeight={Dimensions.get('window').height - STATUS_BAR_HEIGHT - CONTAINER_MARGIN}
         />
@@ -57,7 +60,7 @@ class MessengerView extends Component {
       name: val.name,
       image: {uri: val.avatarUrl || 'https://facebook.github.io/react/img/logo_og.png'},
       position: val.name == UserName && 'right' || 'left',
-      date: new Date(child.val().date),
+      date: new Date(val.date),
       uniqueId: key
     }
     this.props.dispatch(MessengerState.receive(message))
