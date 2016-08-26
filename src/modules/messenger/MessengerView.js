@@ -1,17 +1,18 @@
-import React, {PropTypes} from 'react';
-import { GiftedChat } from 'react-native-gifted-chat';
-import {
-  Platform,
-  View
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import { Platform, View} from 'react-native';
 import {firebaseApp} from '../../utils/firebase';
 import * as MessengerState from './MessengerState';
+const GiftedMessenger = require('react-native-gifted-messenger');
 
 //FIXME
 if (Platform.OS == 'ios') {
+  var STATUS_BAR_HEIGHT = 0;
+  var CONTAINER_MARGIN = 20;
   var UserName = 'ios';
   var AvatarUrl = 'https://source.unsplash.com/sseiVD2XsOk/100x100';
 } else {
+  var STATUS_BAR_HEIGHT = 27;
+  var CONTAINER_MARGIN = 0;
   var UserName = 'android';
   var AvatarUrl = 'https://source.unsplash.com/2Ts5HnA67k8/100x100';
 }
@@ -31,7 +32,7 @@ class MessengerView extends Component {
   render() {
     return (
       <View style={{marginTop: CONTAINER_MARGIN}}>
-        <GiftedChat
+        <GiftedMessenger
           styles={{
             bubbleRight: {
               marginLeft: 70,
@@ -39,7 +40,8 @@ class MessengerView extends Component {
             },
           }}
           messages={this.props.messages}
-          onSend={this.handleSend.bind(this)}
+          handleSend={this.handleSend.bind(this)}
+          maxHeight={Dimensions.get('window').height - STATUS_BAR_HEIGHT - CONTAINER_MARGIN}
         />
       </View>
     );
