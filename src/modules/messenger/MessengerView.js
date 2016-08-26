@@ -33,6 +33,7 @@ class MessengerView extends Component {
   }
 
   render() {
+    const messages = this.props.messages.toJS()
     return (
       <View style={{marginTop: CONTAINER_MARGIN}}>
         <GiftedMessenger
@@ -42,7 +43,7 @@ class MessengerView extends Component {
               backgroundColor: '#007aff',
             },
           }}
-          messages={this.props.messages.toArray()}
+          messages={messages}
           handleSend={this.handleSend.bind(this)}
           maxHeight={Dimensions.get('window').height - STATUS_BAR_HEIGHT - CONTAINER_MARGIN}
         />

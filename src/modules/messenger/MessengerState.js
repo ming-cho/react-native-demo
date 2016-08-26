@@ -7,7 +7,7 @@ import {loop, Effects} from 'redux-loop';
 
 // Initial state
 const initialState = Map({
-  messages: new List(),
+  messages: List([]),
 });
 
 
@@ -38,9 +38,7 @@ export default function MessengerStateReducer(state = initialState, action = {})
 
     case RECEIVE:
       const messages = state.get('messages');
-      messages.push(action.message);
-      return state.set('messages', messages);
-
+      return state.set('messages', messages.push(action.message));
     default:
       return state;
   }
